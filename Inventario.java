@@ -1,8 +1,9 @@
+package vitalfit;
+
 import java.util.ArrayList;
 
 public class Inventario {
 
-    // if/else + for: revisa el stock de cada producto
     public static String revisarStock(ArrayList<Producto> lista) {
         StringBuilder sb = new StringBuilder();
         for (Producto p : lista) {
@@ -17,7 +18,6 @@ public class Inventario {
         return sb.toString();
     }
 
-    // switch: descuento según el código de categoría
     public static double descuento(int idCategoria) {
     switch (idCategoria) {
         case 1:  return 0.10;
@@ -27,7 +27,6 @@ public class Inventario {
     }
     }
 
-    // while: suma el total de la boleta
     public static int totalBoleta(ArrayList<Integer> subtotales) {
         int total = 0;
         int i = 0;
