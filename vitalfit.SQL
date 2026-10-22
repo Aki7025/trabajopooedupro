@@ -69,3 +69,19 @@ HAVING total_comprado > 10000;
 
 SET @iva = 0.19;
 SELECT nombre, precio, precio * (1 + @iva) AS precio_con_iva FROM producto;
+
+SELECT p.nombre, SUM(d.cantidad) AS unidades, SUM(d.cantidad * p.precio) AS total
+FROM detalle_venta d
+JOIN producto p ON d.id_producto = p.id_producto
+GROUP BY p.nombre;
+
+--Esta parte no sé como quedo ya que no la he podido revisar (si sirve quiten el comentario)
+SELECT c.nombre, COUNT(v.id_venta) AS compras
+FROM cliente c
+LEFT JOIN venta v ON c.id_cliente = v.id_cliente
+GROUP BY c.nombre;
+
+SELECT ca.nombre, AVG(p.precio) AS precio_promedio
+FROM categoria ca
+JOIN producto p ON ca.id_categoria = p.id_categoria
+GROUP BY ca.nombre;
