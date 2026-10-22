@@ -1,5 +1,7 @@
+--el drop lo coloque pq cambie u monton la base de datos asi q tuve que reinciarla pero no hagas caso si no habia una base antes 
+DROP DATABASE IF EXISTS vitalfit;
 CREATE DATABASE vitalfit;
-USE vitalfit;
+USE tienda_fitness;
 
 CREATE TABLE categoria (
   id_categoria INT AUTO_INCREMENT PRIMARY KEY,
@@ -37,16 +39,17 @@ CREATE TABLE detalle_venta (
   FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
 );
 
+
 INSERT INTO categoria (nombre) VALUES
-('Pesas'),('Ropa deportiva'),('Suplementos'),('Accesorios'),('Cardio');
+('Fuerza'),('Estiramiento'),('Colchonetas'),('Cardio'),('Accesorios');
 
 INSERT INTO producto (nombre, precio, stock, id_categoria) VALUES
-('Mancuerna 5kg', 12000, 30, 1),
-('Polera dry-fit', 9990, 50, 2),
-('Proteína 1kg', 29990, 20, 3),
-('Cuerda para saltar', 4990, 40, 4),
-('Cinta de correr', 249990, 3, 5),
-('Colchoneta yoga', 11990, 25, 4);
+('Ejercitador de mano', 2990, 25, 1),
+('Banda de resistencia para estiramiento', 1090, 40, 2),
+('Colchoneta MAT', 11990, 4, 3),
+('Cuerda para saltar', 3990, 30, 4),
+('Pelota pequeña', 4290, 20, 5),
+('Correa elástica para estiramiento', 1036, 35, 2);
 
 INSERT INTO cliente (nombre, correo) VALUES
 ('Ana Pérez','ana@mail.com'),('Luis Soto','luis@mail.com'),
@@ -57,31 +60,4 @@ INSERT INTO venta (id_cliente, fecha) VALUES
 (1,'2026-10-01'),(2,'2026-10-02'),(3,'2026-10-03'),(1,'2026-10-05');
 
 INSERT INTO detalle_venta (id_venta, id_producto, cantidad) VALUES
-(1,1,2),(1,4,1),(2,3,1),(3,2,3),(4,6,2);
-
-SELECT c.nombre AS cliente, SUM(p.precio * d.cantidad) AS total_comprado
-FROM cliente c
-JOIN venta v ON c.id_cliente = v.id_cliente
-JOIN detalle_venta d ON v.id_venta = d.id_venta
-JOIN producto p ON d.id_producto = p.id_producto
-GROUP BY c.nombre
-HAVING total_comprado > 10000;
-
-SET @iva = 0.19;
-SELECT nombre, precio, precio * (1 + @iva) AS precio_con_iva FROM producto;
-
-SELECT p.nombre, SUM(d.cantidad) AS unidades, SUM(d.cantidad * p.precio) AS total
-FROM detalle_venta d
-JOIN producto p ON d.id_producto = p.id_producto
-GROUP BY p.nombre;
-
---Esta parte no sé como quedo ya que no la he podido revisar (si sirve quiten el comentario)
-SELECT c.nombre, COUNT(v.id_venta) AS compras
-FROM cliente c
-LEFT JOIN venta v ON c.id_cliente = v.id_cliente
-GROUP BY c.nombre;
-
-SELECT ca.nombre, AVG(p.precio) AS precio_promedio
-FROM categoria ca
-JOIN producto p ON ca.id_categoria = p.id_categoria
-GROUP BY ca.nombre;
+(1,1,2),(1,4,1),(2,3,1),(3,2,3),(4,6,2),(4,5,1); 
