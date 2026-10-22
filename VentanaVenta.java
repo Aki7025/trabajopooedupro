@@ -1,7 +1,10 @@
+package vitalfit;
+
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class VentanaVenta extends JFrame {
     private ArrayList<Producto> productos = new ArrayList<>();
