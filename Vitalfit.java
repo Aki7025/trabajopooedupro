@@ -1,9 +1,11 @@
+package vitalfit;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class vitalfit extends JFrame {
+public class Vitalfit extends JFrame {
 
-    public VentanaInicio() {
+    public Vitalfit() {
         setTitle("Tienda Fitness - Inicio");
         setSize(350, 430);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -16,7 +18,6 @@ public class vitalfit extends JFrame {
         titulo.setFont(new Font("Arial", Font.BOLD, 16));
         panel.add(titulo);
 
-        // {texto del botón, nombre de la tabla, llave primaria}
         String[][] tablas = {
             {"Categorías", "categoria", "id_categoria"},
             {"Productos", "producto", "id_producto"},
@@ -39,6 +40,6 @@ public class vitalfit extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new VentanaInicio().setVisible(true));
+        SwingUtilities.invokeLater(() -> new Vitalfit().setVisible(true));
     }
 }
